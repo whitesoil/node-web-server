@@ -2,13 +2,14 @@
 2018 Capstone project node.js version
 
 ## Commands
-* NginX 실행 : sudo service nginx start
-* 서버 실행 : forever start server.js
+* NginX 실행 : sudo service nginx start (nginx 설치 요망)
+* 서버 실행 : forever start server.js (global로 설치 요망)
 * 서버 종료 : forever stopall
-* 서버 로컬 테스트 : nodemon server.js  (nodemon global로 설치해서 실행)
+* 서버 로컬 테스트 : nodemon server.js  (global로 설치해서 실행)
 * 설치된 패키지 목록 : npm ls --depth 0
 
 ## Announcement
+* npm install로 Packages 설치 필요
 * meta에 반드시 charset UTF-8 포함
 * git add 전에 git config core.autocrlf true -> New line error 해결
 * ABC 바로 아래에 admin.json 파일 생성
