@@ -47,7 +47,7 @@
 * RDS
 * Certification
 
-## API
+## RESTful API
 ### GET
     * /api/user/:userid
     * /api/list
