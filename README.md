@@ -1,4 +1,4 @@
-# ABC
+# KangNamStyle
 2018 Capstone project node.js version
 
 ## Commands
@@ -12,7 +12,7 @@
 * npm install로 Packages 설치 필요
 * meta에 반드시 charset UTF-8 포함
 * git add 전에 git config core.autocrlf true -> New line error 해결
-* ABC 바로 아래에 admin.json 파일 생성
+* server.js와 같은 위치에 admin.json 파일 생성
 ```
 {
     "host" : "RDS 엔드포인트(url)",
