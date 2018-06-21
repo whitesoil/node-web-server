@@ -1,0 +1,175 @@
+#input_id, #input_pw, #reg_button, #log_button{
+	color :white;
+
+}
+#iteminfo_text{
+	font-size: 17px;
+	margin: 10px;
+}
+.upperline{
+	border-top:solid 1px rgb(100, 100, 100);
+	
+
+}
+#filename,#ttttt{
+	color: black;
+	
+  }
+.textcolor_input,#ttttt,#wizard-picture{
+	width: 160px;
+}
+#choosepicture{
+	
+	line-height: 14px;
+	padding-top: 4px;
+
+}
+.textsize{
+	font-size: 13px;
+}
+.bottomline{
+	border-bottom:solid 1px rgb(100, 100, 100);
+}
+
+#test3,#userid,#search{
+	font-family: 'Ubuntu', sans-serif;
+}
+.sidebar-normal,.user,.text-types{
+	font-family: 'Ubuntu', sans-serif;
+}
+#text_login_remove{
+	margin-bottom: 10px;
+}
+body{
+	background-image:url("/assets/img/header-doc.jpg");
+	
+	background-repeat: no-repeat;
+
+}
+.main-body{
+	
+	background-position: 30%;
+	background-position-y: 60%;
+	background-image:url("/assets/img/header-doc.jpg");
+	
+	background-repeat: no-repeat;
+	
+}
+.textcolor{
+	color: beige;
+}
+#upperremove{
+	border-top: 0px;
+}
+
+.lmargin{
+	margin-left: 12px;
+	max-width: 31.5%;
+}
+
+td{
+	text-align: center;
+}
+.col-left{
+	float: left;
+}
+.col-right{
+	float: right;
+	margin-right: 30px;
+}
+#updateData,.loadfile,.loadimg{
+	width: 100%;
+}
+.titletext{
+	width: 100%;
+	height: 50px;
+	border: 0;
+}
+.ca{
+	margin-right: 10px;
+}
+.textareas{
+	width: 100%;
+	height: 100px;
+	border: 0;
+}
+.imagecenter,.filecenter{
+	text-align: center;
+	width: 100%;
+}
+#delitem,#updateitem{
+	width: 46%;
+	padding-left: 0%;
+	padding-right: 0%;
+
+	text-align: center;
+}
+#delitem{
+	margin-left: 5%;
+}
+.blurs{
+	background:transparent;
+	border: 0;
+	box-shadow: 0 0px 0px 0 rgba(0, 0, 0, 0.14);
+}
+.chk1{
+	position: relative;
+	float: left;
+	margin-top: 0;
+	padding-top: 0;
+	font-size: 14px;
+	line-height: 1.42857;
+	color: #AAAAAA;
+	display: block;
+	font-weight: 400;
+  }
+  #checkboxstyle{
+	margin-top: 10px;
+	padding-top: 0;
+
+  }
+  .mars{
+	  width: 100%;
+	  margin-left: -10px;
+  }
+  .simple-text-font{
+	font-size: 16px;
+	padding: 5px 0px;
+	white-space: nowrap;
+	font-weight: 400;
+    line-height: 30px;
+    overflow: hidden;
+	text-transform: uppercase;
+	color: #fff;
+  }
+  .textblack{
+	  color: beige;
+  }
+  .backcolor{
+	background-color: #f1f9f2;
+  }
+  /* dashboard card  */
+  .fixed-contents{
+	height: 750px;
+	overflow-y:scroll;
+	overflow-x:hidden;
+	margin-bottom: 0;
+  }
+  .main-panel-main{
+	height:900px;
+	overflow:hidden;
+  }
+  /* myitemlist.ejs */
+  .mylist_container{
+	height: 1000px;
+	overflow:hidden;
+  }
+  .mylist_card{
+	margin-top: 0px;
+  }
+  .mylist_card_body{
+	overflow:scroll;height:800px;
+  }
+  #description_limit{
+	width:20px;height:150px;  overflow: hidden;  white-space: nowrap; text-overflow: ellipsis;
+  }

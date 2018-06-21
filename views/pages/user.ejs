@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ <% include ../header.ejs %>
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js" type="text/javascript"></script>
+ <script src="http://ajax.googleapis.com/ajax/libs/prototype/1.7.3.0/prototype.js" type="text/javascript"></script>
+</head>
+<body>
+  <div class="wrapper">
+    <% include ../sidebar.ejs %>
+    <div class="main-panel">
+      <!-- Navbar -->
+      <nav class="navbar navbar-expand-lg navbar-transparent  navbar-absolute fixed-top">
+        <div class="container-fluid textcolor">
+          <div class="navbar-wrapper">
+            <div class="navbar-minimize">
+              <button class="btn btn-just-icon btn-white btn-fab btn-round">
+                <i class="material-icons text_align-center visible-on-sidebar-regular">more_vert</i>
+              </button>
+            </div>
+            <a class="navbar-brand">Profile</a>
+          </div>
+        </div>
+      </nav>
+      <!-- End Navbar -->
+      <div class="content">
+        <div class="container-fluid" >
+          <div class="row" >
+            <div class="col-md-9" >
+              <div class="card" >
+                <div class="card-header card-header-icon card-header-rose">
+                  <div class="card-icon">
+                    <i class="material-icons">perm_identity</i>
+                  </div>
+                  <h4 class="card-title">Edit Profile -
+                    <small class="category">Complete your profile</small>
+                  </h4>
+                </div>
+                <div class="card-body">                                                
+                    <div class="row">
+                      <div class="col-md-5">
+                        <div class="form-group">
+                          <label class="bmd-label-floating">ID (disabled)</label>
+                          <input type="text" class="form-control" id = "ID" value ="<%= info.ID %>" disabled>
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <label class="bmd-label-floating">Username</label>
+                          <input type="text" class="form-control" id = "Name" value ="<%= info.Name %>">
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-12">
+                        <div class="form-group">
+                          <label class="bmd-label-floating">Company</label>
+                          <input type="text" class="form-control" id = "Company" value ="<%= info.Company %>">
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-12">
+                        <div class="form-group">
+                          <label class="bmd-label-floating">E-mail Address</label>
+                          <input type="text" class="form-control" id = "Email" value ="<%= info.Email %>">
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-12">
+                        <div class="form-group">
+                          <label class="bmd-label-floating">Role</label>
+                          <input type="text" class="form-control" id= "Role" value ="<%= info.Role %>">
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-12">
+                        <div class="form-group">
+                          <label class="bmd-label-floating">Password</label>
+                          <input type="password" class="form-control" id = "PW" value ="">
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-12">
+                        <div class="form-group">
+                          <label class="bmd-label-floating">Comfirm Password</label>
+                          <input type="password" class="form-control" id = "Confirm_PW" value ="">
+                        </div>
+                      </div>
+                    </div>
+                    <button type="button" class="btn btn-rose pull-right" id = "update_profile">Update Profile</button>
+                    <script>              
+                      $("update_profile").onclick = function () {    
+                        var ID = document.getElementById('ID').value;                                                      
+                        var Name = document.getElementById('Name').value;
+                        var Company = document.getElementById('Company').value;
+                        var Role = document.getElementById('Role').value;
+                        var Email = document.getElementById('Email').value;
+                        var PW = document.getElementById('PW').value;
+                        var Confirm_PW = document.getElementById('Confirm_PW').value;
+                        if(PW != Confirm_PW){
+                          alert('Please check Password');
+                          return;
+                        }
+                        var json = {"ID": ID, "Name" : Name,"Company" : Company, "Role" : Role,"Email" : Email, "PW" : PW  };
+                        $.ajax({
+                          url : '/api/user',
+                          type: 'put',         
+                          data : JSON.stringify(json),
+                          contentType: 'application/json',                                   
+                          success: function(){
+                              window.location = '/pages/user.html';
+                          }                
+                        });                      
+                      }
+                    </script>
+                    <div class="clearfix"></div>                  
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <%include ../footer.ejs %>
+    </div>
+  </div>
+</body>
+<%include ../scripts.ejs%>
+
+</html>

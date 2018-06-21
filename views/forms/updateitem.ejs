@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <% include ../header.ejs %>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js" type="text/javascript"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/prototype/1.7.3.0/prototype.js" type="text/javascript"></script>
+</head>
+<body>
+    <div class="wrapper">
+        <% include ../sidebar.ejs %>
+        <div class="main-panel">
+        <!-- Navbar -->
+            <nav class="navbar navbar-expand-lg navbar-transparent  navbar-absolute fixed-top">
+                <div class="container-fluid textcolor">
+                    <div class="navbar-wrapper">
+                        <div class="navbar-minimize">
+                            <button class="btn btn-just-icon btn-white btn-fab btn-round">
+                                <i class="material-icons text_align-center visible-on-sidebar-regular">more_vert</i>
+                            </button>
+                        </div>
+                        <a class="navbar-brand textcolor" href="">Update Item</a>
+                    </div>
+                    <div class="collapse navbar-collapse justify-content-end">
+                    </div>
+                </div>
+            </nav>
+      <!-- End Navbar -->
+            <div class="content">
+                <div class="container-fluid" >                                            
+                    <div class="row" >                                                                           
+                        <form id = "updateData" action="/api/edit/<%= item.Post_ID %>" method="post" enctype="multipart/form-data">
+                            <div class="col-md-7 col-left" >
+                                <div class="card" >
+                                    <div class="card-header card-header-icon card-header-rose">
+                                        <div class="card-icon">
+                                            <i class="material-icons">perm_identity</i>
+                                        </div>
+                                        <h4 class="card-title">Edit Your Item -
+                                            <small class="category">Complete your Iteminfo</small>
+                                        </h4>
+                                    </div>
+                                    <div class="card-body">                                                
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label class="bmd-label-floating">Title</label>
+                                                    <input type="text" class="form-control titletext" value ="<%=item.Title%>" name = "title" required>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="clearfix">
+                                        </div>    
+                                    </div>
+                                </div>
+                                <div class="card" >
+                                    <div class="card-header card-header-icon card-header-rose">
+                                    </div>
+                                    <div class="card-body">                                                
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label class="bmd-label-floating">cloud</label>
+                                                    <div class="form-check">
+                                                        <label class="form-check-label ca" >
+                                                            <input class="form-check-input" type="radio" name="cloud" value="AWS" id="AWS" required>AWS
+                                                            <span class="circle">
+                                                                <span class="check"></span>
+                                                            </span>
+                                                        </label>
+                                                        <label class="form-check-label ca">
+                                                            <input class="form-check-input" type="radio" name="cloud" value="Azure" id="Azure" >Azure
+                                                            <span class="circle">
+                                                                <span class="check"> </span>
+                                                            </span>
+                                                        </label>
+                                                        <label class="form-check-label ca">
+                                                            <input class="form-check-input" type="radio" name="cloud" value="GCP" id="GCP" >GCP 
+                                                            <span class="circle">
+                                                                <span class="check"> </span>
+                                                            </span>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <% var cloud = item.Cloud %>
+                                        <% if(cloud=='AWS'){%>
+                                            <script>
+                                                document.getElementById("AWS").checked =true;
+                                            </script>
+                                        <%}else if(cloud=="Azure"){%>
+                                            <script>
+                                                document.getElementById("Azure").checked =true;
+                                            </script>
+                                        <%}else if(cloud=="GCP"){%>
+                                            <script>
+                                                document.getElementById("GCP").checked =true;
+                                            </script>
+                                        <%}%>
+                                        <div class="row">  <!-- web mobile desktop iot ai etc-->
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label class="bmd-label-floating">category</label>
+                                                    <br>
+                                                    <div class="form-check form-check-inline">
+                                                        <label class="form-check-label">
+                                                            <input class="form-check-input" type="checkbox" name = "category" value="Web" id="WEB" required autofocus> Web
+                                                            <span class="form-check-sign">
+                                                                <span class="check"></span>
+                                                            </span>
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-check form-check-inline">
+                                                        <label class="form-check-label">
+                                                            <input class="form-check-input" type="checkbox" name = "category" value="Mobile" id="MOBILE" required> Mobile 
+                                                            <span class="form-check-sign">
+                                                                <span class="check"></span>
+                                                            </span>
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-check form-check-inline">
+                                                        <label class="form-check-label">
+                                                            <input class="form-check-input" type="checkbox" name = "category" value="Desktop" id="DESKTOP" required> Desktop
+                                                            <span class="form-check-sign">
+                                                                <span class="check"></span>
+                                                            </span>
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-check form-check-inline">
+                                                        <label class="form-check-label">
+                                                            <input class="form-check-input" type="checkbox" name = "category" value="IoT" id="IoT" required> IoT 
+                                                            <span class="form-check-sign">
+                                                                <span class="check"></span>
+                                                            </span>
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-check form-check-inline">
+                                                        <label class="form-check-label">
+                                                            <input class="form-check-input" type="checkbox" name = "category" value="AI" id="AI" required> AI 
+                                                            <span class="form-check-sign">
+                                                                <span class="check"></span>
+                                                            </span>
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-check form-check-inline">
+                                                        <label class="form-check-label">
+                                                            <input class="form-check-input" type="checkbox" name = "category" value="DATA" id="DATA" required> Data 
+                                                            <span class="form-check-sign">
+                                                                <span class="check"></span>
+                                                            </span>
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-check form-check-inline">
+                                                        <label class="form-check-label">
+                                                            <input class="form-check-input" type="checkbox" name = "category" value="etc" id="etc" required> etc 
+                                                            <span class="form-check-sign">
+                                                                <span class="check"></span>
+                                                            </span>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <% var tags = item.Category.split('$')%>
+                                        <% if(tags.includes('Web')){%>
+                                            <script> document.getElementById("WEB").checked=true;</script>
+                                        <%}%>
+                                        <% if(tags.includes('Mobile')){%>
+                                            <script> document.getElementById("MOBILE").checked=true;</script>
+                                        <%}%>
+                                        <% if(tags.includes('Desktop')){%>
+                                            <script> document.getElementById("DESKTOP").checked=true;</script>
+                                        <%}%>
+                                        <% if(tags.includes('IoT')){%>
+                                            <script> document.getElementById("IoT").checked=true;</script>
+                                        <%}%>
+                                        <% if(tags.includes('AI')){%>
+                                            <script> document.getElementById("AI").checked=true;</script>
+                                        <%}%>
+                                        <% if(tags.includes('Data')){%>
+                                            <script> document.getElementById("DATA").checked=true;</script>
+                                        <%}%>
+                                        <% if(tags.includes('etc')){%>
+                                            <script> document.getElementById("etc").checked=true;</script>
+                                        <%}%>
+                                        <div class="clearfix">
+                                        </div>    
+                                    </div>
+                                </div>
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label class="bmd-label-floating">Description</label>
+                                                    <textarea class="bmd-label-floating textareas" name="description" required><%=item.Description%></textarea>                                                
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4 col-right" >
+                                <div class="card" >
+                                    <div class="card-header card-header-icon card-header-rose">
+                                        <div class="card-icon">
+                                            <i class="material-icons">perm_identity</i>
+                                        </div>
+                                        <h4 class="card-title">Edit Your Image & File   
+                                            <small class="category"></small>
+                                        </h4>
+                                    </div>
+                                    <div class="card-body">                                                
+                                        <div class="row">
+                                            <div class="col-md-12" >
+                                                <div class="fileinput fileinput-new text-center loadimg" data-provides="fileinput" >
+                                                    <div class="fileinput-new thumbnail">
+                                                        <img src="<%= item.Image %>" alt="..." width="30%",height="30%">
+                                                    </div>
+                                                    <div class="fileinput-preview fileinput-exists thumbnail" ></div>
+                                                    <div>
+                                                        <span class="btn btn-rose btn-round btn-file imagecenter">                                                            
+                                                            <span class="fileinput-new">Change</span>
+                                                            <span class="fileinput-exists">Change</span>
+                                                            <input type="hidden"><input type="file" name="image">
+                                                        </span>
+                                                    </div>
+                                                </div> 
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-12" >
+                                                <div class="fileinput fileinput-new text-center loadfile" data-provides="fileinput">
+                                                    <h4 class="description" id = "filename"><%= item.File%></h4>
+                                                    <div class="fileinput-new thumbnail"></div>
+                                                    <div>
+                                                        <span class="btn btn-rose btn-round btn-file filecenter">
+                                                                <span class="fileinput-new">Change</span>
+                                                                <span class="fileinput-exists">Change</span>
+                                                            <input type="hidden"><input type="file" name="architecture" onchange="getCmaFileView(this,'all')">
+                                                        </span>
+                                                    </div>
+                                                </div>    
+                                            </div>  
+                                        </div>
+                                        <button type="button" class="btn btn-rose pull-right" id = "delitem">Delete item</button>
+                                        <input type="button" class="btn btn-rose pull-right" id = "updateitem" value = "Update Item"/>                              
+                                    </div>
+                                </div>                        
+                            </div>
+                        </form>
+                        <% if(nickname != '') { %>
+                            <script>
+                                $("delitem").onclick = function () {    
+                                    var post_id = window.location.pathname.split('/')[3];
+                                    $.ajax({
+                                        url : '/api/item/'+post_id,
+                                        type: 'delete',                                                         
+                                        contentType: 'application/json',                                   
+                                        success: function(){                                                
+                                            window.location = '/tables/myitemlist.html';
+                                        },
+                                        error : function(){
+                                            alert("Error");
+                                        }      
+                                    });
+                                }
+                                $('updateitem').onclick = function() {                                                                        
+                                    var post_id = window.location.pathname.split('/')[3];
+                                    var form = $('#updateData')[0];
+                                    var data = new FormData(form);                      
+                                    $.ajax({
+                                        type: "PUT",
+                                        url: "/api/item/"+post_id,
+                                        enctype: 'multipart/form-data',
+                                        processData: false,
+                                        contentType: false,
+                                        data: data,
+                                        cache: false,
+                                        success: function() {
+                                            alert("Success");
+                                        },
+                                        error: function(){
+                                            alert("Error");
+                                        }
+                                    });
+                                }
+                            </script>
+                        <% } %>
+                    </div>                
+                </div>
+            </div>                         
+            <%include ../footer.ejs %>
+        </div>
+    </div>
+</body>
+<%include ../scripts.ejs%>
+<script>
+        function getCmaFileInfo(obj,stype){
+          var fileObj, pathHeader , pathMiddle, pathEnd, allFilename, fileName, extName;
+          if(obj == "[object HTMLInputElement]"){
+              fileObj = obj.value;
+          }
+          else{
+              fileObj = document.getElementById(obj).value;
+          }
+          if (fileObj != ""){
+            pathHeader = fileObj.lastIndexOf("\\");
+            pathMiddle = fileObj.lastIndexOf(".");
+            pathEnd = fileObj.length;
+            fileName = fileObj.substring(pathHeader+1, pathMiddle);
+            extName = fileObj.substring(pathMiddle+1, pathEnd);
+            allFilename = fileName+"."+extName;
+            if(stype == "all"){
+              return allFilename; // 확장자 포함 파일명
+            }
+            if(stype == "name"){
+              return fileName; // 순수 파일명만(확장자 제외)
+            } 
+            if(stype == "ext"){
+              return extName; // 확장자
+            } 
+            else{
+              return fileName; // 순수 파일명만(확장자 제외)
+            }
+          } 
+          else{
+           
+            return false;
+          }
+        }
+        function getCmaFileView(obj,stype) {
+    
+          var s = getCmaFileInfo(obj,stype);
+            if(s){
+                alert(s+" 파일이 업로드 됩니다." );
+                $("#test12").css("margin-left","0");
+                $("#filename").text(s);
+                
+            }
+            else{
+                $("#filename").text("not exist")
+                $("#test12").css("margin-left","20%");
+            }
+        }
+      </script>
+</html>

@@ -1,0 +1,178 @@
+<link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+<link href="/css/sidebar.css?var=1"  type="text/css" rel="stylesheet" >
+<link rel="stylesheet" type="text/css" href="/css/dashboard.css">
+<div class="sidebar text-types" data-color="rose" data-background-color="black" data-image="/assets/img/sidebar-3.jpg">
+  <div class="logo">
+    <a href="/" class="simple-text-font  logo-mini">
+      AC
+    </a>
+    <a href="/" class="simple-text-font logo-normal">
+      Architecture Center
+    </a>
+  </div>
+  <div class="sidebar-wrapper textsize">
+    <div class="user">
+      <% if(nickname!= ''){ %>
+        <div class="photo">
+          <img src="http://www.stickpng.com/assets/images/585e4bf3cb11b227491c339a.png" />
+        </div>
+        <div class="user-info">
+          <a data-toggle="collapse" class="username">
+            <span id ="userid">
+              <%= nickname %>
+            </span>
+          </a>
+            <ul class="nav" >
+              <li class="nav-item" >
+                <a class="nav-link" href="/pages/user.html">
+                  <span class="sidebar-mini">  </span>
+                  <span class="sidebar-normal"> PROFILE </span>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/tables/myitemlist.html">
+                  <span class="sidebar-mini">  </span>
+                  <span class="sidebar-normal"> MY ITEM </span>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/forms/newitem.html">
+                  <span class="sidebar-mini">  </span>
+                  <span class="sidebar-normal"> ADD ITEM </span>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/api/signout">
+                  <span class="sidebar-mini">  </span>
+                  <span class="sidebar-normal" value="logout"> LOGOUT </span>
+                </a>
+              </li>
+            </ul>
+        </div>
+        <ul class="nav">
+          <a class="nav-link ">
+            <li class="nav-item upperline">
+              <span class="nav-link">
+                <span class="sidebar-mini">
+                  <input type="radio" name="cloud" value="AWS" >
+                </span>
+                <span class="sidebar-normal" >  AWS </span>
+              </span>
+            </li>
+            <li class="nav-item ">
+              <span class="nav-link">
+                <span class="sidebar-mini">
+                  <input type="radio" name="cloud" value="Azure">
+                </span>
+                <span class="sidebar-normal"> Azure </span>
+              </span>
+            </li>
+            <li class="nav-item">
+              <span class="nav-link">
+                <span class="sidebar-mini">
+                  <input type="radio" name="cloud" value="GCP">
+                </span>
+                <span class="sidebar-normal"> GCP </span>
+              </span>
+            </li>
+            <li class="nav-item " id="logme">
+              <span class="nav-link">
+                <span class="sidebar-mini" >
+                  <input type="checkbox" name="category" value="Web" class="check" >
+                </span>
+                <span class="sidebar-normal" > WEB</span>
+              </span>
+            </li>
+            <li class="nav-item ">
+              <span class="nav-link">
+                <span class="sidebar-mini">
+                  <input type="checkbox" name="category" value="Mobile" class="check">
+                </span>
+                <span class="sidebar-normal">Mobile</span>
+              </span>
+            </li>
+            <li class="nav-item">
+              <span class="nav-link">
+                <span class="sidebar-mini">
+                  <input type="checkbox" name="category" value="Desktop" class="check">
+                </span>
+                <span class="sidebar-normal">Desktop</span>
+              </span>
+            </li>
+            <li class="nav-item">
+              <span class="nav-link">
+                <span class="sidebar-mini">
+                  <input type="checkbox" name="category" value="IoT" class="check">
+                </span>
+                <span class="sidebar-normal">IoT</span>
+              </span>
+            </li>
+            <li class="nav-item">
+              <span class="nav-link">
+                <span class="sidebar-mini">
+                  <input type="checkbox" name="category" value="AI" class="check">
+                </span>
+                <span class="sidebar-normal">AI</span>
+              </span>
+            </li>
+            <li class="nav-item">
+              <span class="nav-link">
+                <span class="sidebar-mini">
+                  <input type="checkbox" name="category" value="Data" class="check">
+                </span>
+                <span class="sidebar-normal">Data</span>
+              </span>
+            </li>
+            <li class="nav-item ">
+              <span class="nav-link bottomline">
+                <span class="sidebar-mini">
+                  <input type="checkbox" name="category" value="etc" class="check"> </span>
+                <span class="sidebar-normal">etc</span>
+              </span>
+            </li>
+            <button type="button" class="btn btn-finish btn-fill btn-rose btn-wd" id="search" >Search</button>
+            <script>              
+              $("search").onclick = function () {                                                
+                var cloud_list = document.getElementsByName('cloud');
+                var cloud = "";
+                for(var i = 0; i<cloud_list.length; i++){
+                  if(cloud_list[i].checked){
+                    cloud = cloud_list[i].value + "$";
+                  }
+                }                
+                if (cloud == "") {
+                  cloud = '$';
+                }
+                                
+                var ctg_checkbox = document.getElementsByName('category');
+                var ctg_list = "";                
+                for (var i = 0; i < ctg_checkbox.length; i++) {
+                  if (ctg_checkbox[i].checked) {
+                    ctg_list += ctg_checkbox[i].value + "$";
+                  }
+                }
+                var category = "";
+                if (ctg_list == "") {
+                  category = "$";
+                } else {
+                  category = ctg_list.substring(0, ctg_list.length - 1);
+                }
+                window.location = '/dashboard.html/' + cloud + "/" + category;
+              }
+            </script>
+          </a>
+        </ul>
+        <%} else {%>
+        <span id="login_form">
+          <button class="btn log" onclick="window.location.href='/pages/login.html'" value="LOGIN">LOGIN</button>
+        </span>
+        <span id="login_form">
+          <button class="btn log" onclick="window.location.href='/pages/register.html'" value="REGISTER">REGISTER</button>
+        </span>
+        <span id="login_form">
+          <button class="btn log" onclick="window.location.href='/pages/find.html'" value="FORGET">FORGET</button>
+        </span>
+        <% } %>
+    </div>
+  </div>
+</div>

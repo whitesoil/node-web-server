@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <% include ../header.ejs %>
+  <link href="/css/dashboard.css" type="text/css" rel="stylesheet">
+  <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
+</head>
+  <body>
+    <div class="wrapper">
+      <% include ../sidebar.ejs %>
+      <div class="main-panel">
+        <!-- Navbar -->
+        <nav class="navbar navbar-expand-lg navbar-transparent  navbar-absolute fixed-top">
+          <div class="container-fluid textcolor">
+            <div class="navbar-wrapper">
+              <div class="navbar-minimize">
+                <button class="btn btn-just-icon btn-white btn-fab btn-round">
+                  <i class="material-icons text_align-center visible-on-sidebar-regular">more_vert</i>
+                </button>
+              </div>
+              <a class="navbar-brand textcolor" href="">Item Information</a>
+            </div>
+            <div class="collapse navbar-collapse justify-content-end">
+              <form class="navbar-form">
+                <div class="input-group no-border">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        <!-- End Navbar -->
+        <div class="content">
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-md-5" >
+                <div class="card">
+                  <div class="card-header card-header-icon card-header-rose">
+                    <div class="card-icon">
+                      <i class="material-icons">perm_identity</i>
+                    </div>
+                    <h4 class="card-title">Item Information
+                    </h4>
+                  </div>
+                  <div class="card-body" id ="iteminfo_text">
+                    <form>
+                      <div class="row" >
+                        <div class="col-md-12" id="iteminfo_text">
+                          <div class="form-group">
+                            <div class="alert alert-info mars">
+                              <label class="textcolor">Title :</label>
+                              <br/>
+                              <a> <%= item.Title %> </a>
+                            </div>
+                            <div class="alert alert-info mars">
+                              <label class="textcolor">Description :</label>
+                              <br/>
+                              <a> <%= item.Description %></a>
+                            </div>
+                            <div class="alert alert-info mars">
+                              <label class="textcolor">Tags :</label>
+                              <br/>
+                              <a>  
+                                <% var tag = item.Category.split('$'); %>
+                                <% for(var j = 0; j < tag.length;j++){ %>
+                                  #
+                                  <%= tag[j]%>
+                                <% } %>
+                              </a>
+                            </div>
+                            <div class="alert alert-info mars">
+                              <label class="textcolor">Cloud :</label>
+                              <br/>
+                              <a id="Cloud">
+                                # <%= item.Cloud %>
+                            </div>
+                            <div class="alert alert-info mars">
+                              <label class="textcolor">Date :</label>
+                              <br/>
+                              <a>
+                                  <% var date = item.Date.split('T'); %>
+                                  <%= date[0] %>
+                              </a>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-7">
+                <div class="card card-profile"> 
+                  <div class="card-body">
+                    <h5>Image</h5>
+                    <img src="<%= item.Image%>" width="100%" alt="">
+                  </div>
+                </div>
+                <div class="card card-profile"> 
+                  <div class="card-body">
+                    <h5>Architecture</h5>
+                    <a href="#" class="btn btn-rose" id="down">download</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <%if(!nickname){%>
+          <script>
+            $("#down").attr("href","#");
+          </script>
+        <%}else{%>
+          <script>
+            $("#down").attr("href","<%=item.File%>");
+          </script>
+        <%}%>
+        <%include ../footer.ejs %>
+      </div>
+    </div>
+  </body>
+<%include ../scripts.ejs%>
+
+</html>

@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <% include ../header.ejs %>
+  <link src="/css/dashboard.css" type="text/css" rel="stylesheet"></link>
+</head>
+
+<body class="">
+  <% if(nickname == ''){ %>
+    <script>
+       window.location="/";
+    </script>
+  <% } %>
+  <div class="wrapper">
+    <% include ../sidebar.ejs %>
+    <div class="main-panel">
+      <!-- Navbar -->
+      <nav class="navbar navbar-expand-lg navbar-transparent  navbar-absolute fixed-top">
+        <div class="container-fluid textcolor">
+          <div class="navbar-wrapper">
+            <div class="navbar-minimize">
+              <button id="minimizeSidebar" class="btn btn-just-icon btn-white btn-fab btn-round">
+                <i class="material-icons text_align-center visible-on-sidebar-regular">more_vert</i>
+              </button>
+            </div>
+            <a class="navbar-brand textcolor" href="newitem.html">Add Item</a>
+          </div>
+          <div class="collapse navbar-collapse justify-content-end">
+          </div>
+        </div>
+      </nav>
+      <!-- End Navbar -->
+      <div class="content">
+        <div class="container-fluid">
+          <div class="col-md-8 mr-auto ml-auto">
+            <div class="wizard-container">                
+              <div class="card card-wizard" data-color="rose" id="wizardProfile">
+                <form action="/api/item/<%=nickname %>" method="post" enctype="multipart/form-data">
+                  <!--        You can switch " data-color="primary" "  with one of the next bright colors: "green", "orange", "red", "blue"       -->
+                  <div class="card-header text-center">
+                    <h3 class="card-title">
+                      Show your architecture
+                    </h3>
+                    <h5 class="card-description">Your architecture make world more efficient</h5>
+                  </div>
+                  <div class="wizard-navigation">
+                    <ul class="nav nav-pills">
+                      <li class="nav-item">
+                        <a class="nav-link active" href="#about" data-toggle="tab" role="tab">
+                          Picture ,Files
+                        </a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link" href="#account" data-toggle="tab" role="tab">
+                          Contents
+                        </a>
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="card-body">
+                    <div class="tab-content">
+                      <div class="tab-pane active" id="about">
+                        <h5 class="info-text">Upload your photo of architecture and file</h5>
+                        <div class="row justify-content-center">
+                          <div class="col-sm-6">
+                            <div class="picture-container" >
+                              <div class="fileinput-new thumbnail">
+                                <img src="/assets/img/image_placeholder.jpg" class="picture-src" id="wizardPicturePreview" title=""width= "200px" height="150px"/>
+                                <span class="btn btn-rose btn-round btn-file">
+                                  <input type="file" name="image" id="wizard-picture" required >
+                                  <h6 class="description textcolor_input textcolor">Choose Picture</h6>
+                                </span>
+                                <div class="fileinput-new thumbnail">
+                                  <br/>
+                                  <h5 class="description" id = "filename">not exist</h5>
+                                  <span class="btn btn-rose btn-round btn-file">
+                                      <input type="file" class="text-color-button" name="architecture" onchange="getCmaFileView(this,'all')" required>
+                                      <h6 class="description textcolor_input textcolor" style="text-align: center">Architecture</h6>
+                                  </span>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="tab-pane" id="account">
+                        <h5 class="info-text"> More information </h5>
+                        <div class="row justify-content-center">
+                          <div class="col-lg-10 mt-3">
+                            <div class="input-group form-control-lg">
+                              <div class="input-group-prepend">
+                                <span class="input-group-text">
+                                  <i class="material-icons">face</i>
+                                </span>
+                              </div>
+                              <div class="form-group">
+                                <label for="exampleInput1" class="bmd-label-floating">Title (required)</label>
+                                <input type="text" class="form-control" id="exampleInput1" name="title" required>
+                              </div>
+                            </div>
+                            <div class="input-group form-control-lg">
+                              <div class="input-group-prepend">
+                                <span class="input-group-text">
+                                  <i class="material-icons">face</i>
+                                </span>
+                              </div>
+                              <div class="form-group">
+                                <label for="exampleInput1" class="bmd-label-floating">Description (required)</label>
+                                <input type="text" class="form-control" id="exampleInput11" name="description" required>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-lg-10 mt-3">
+                            <div class="input-group form-control-lg">
+                              <div class="input-group-prepend">
+                                <span class="input-group-text">
+                                  <i class="material-icons">face</i>
+                                </span>
+                              </div>
+                              <div class="form-group">
+                                <label for="exampleInput2" class="bmd-label-floating">CLOUD (required)
+                                  <br/>
+                                  <input type="radio" name="cloud" value="AWS" required> AWS
+                                  <input type="radio" name="cloud" value="Azure"> Azure
+                                  <input type="radio" name="cloud" value="GCP"> GCP
+                                </label>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-lg-10 mt-3">
+                            <div class="input-group form-control-lg">
+                              <div class="input-group-prepend">
+                                  <span class="input-group-text">
+                                    <i class="material-icons">face</i>
+                                  </span>
+                                </div>
+                                <div class="form-group">
+                                  <label for="exampleInput2" class="bmd-label-floating" >Category (required)
+                                    <br/>
+                                    <input type="checkbox" name="category" value="Web" required autofocus> Web
+                                    <input type="checkbox" name="category" value="Mobile" required> Mobile
+                                    <input type="checkbox" name="category" value="Desktop" required> Desktop
+                                    <input type="checkbox" name="category" value="IoT" required> IoT
+                                    <input type="checkbox" name="category" value="AI" required> AI
+                                    <input type="checkbox" name="category" value="Data" required> Data 
+                                    <input type="checkbox" name="category" value="etc" required> etc
+                                  </label>
+                                </div>
+                              </div>
+                            </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="card-footer">
+                    <div class="mr-auto">
+                      <input type="button" class="btn btn-previous btn-fill btn-default btn-wd disabled" name="previous" value="Previous">
+                    </div>
+                    <div class="ml-auto">
+                      <input type="button" class="btn btn-next btn-fill btn-rose btn-wd" name="next" value="Next">
+                      <input type="submit" class="btn btn-finish btn-fill btn-rose btn-wd" name="finish" value="Finish" style="display: none;">
+                    </div>
+                    <div class="clearfix"></div>
+                  </div>
+                </form>
+              </div>
+            </div>
+            <!-- wizard container -->
+          </div>
+        </div>
+      </div>
+      <%include ../footer.ejs %>
+    </div>
+  </div>
+</body>
+<%include ../scripts.ejs%>
+<script type="text/javascript">
+  $(document).ready(function () {
+
+    //init wizard
+
+    demo.initMaterialWizard();
+
+    // Javascript method's body can be found in assets/js/demos.js
+    demo.initDashboardPageCharts();
+
+    demo.initCharts();
+
+  });
+</script>
+
+<script>
+    function getCmaFileInfo(obj,stype){
+      var fileObj, pathHeader , pathMiddle, pathEnd, allFilename, fileName, extName;
+      if(obj == "[object HTMLInputElement]"){
+          fileObj = obj.value;
+      }
+      else{
+          fileObj = document.getElementById(obj).value;
+      }
+      if (fileObj != ""){
+        pathHeader = fileObj.lastIndexOf("\\");
+        pathMiddle = fileObj.lastIndexOf(".");
+        pathEnd = fileObj.length;
+        fileName = fileObj.substring(pathHeader+1, pathMiddle);
+        extName = fileObj.substring(pathMiddle+1, pathEnd);
+        allFilename = fileName+"."+extName;
+        if(stype == "all"){
+          return allFilename; // 확장자 포함 파일명
+        }
+        else if(stype == "name"){
+          return fileName; // 순수 파일명만(확장자 제외)
+        } 
+        else if(stype == "ext"){
+          return extName; // 확장자
+        } 
+        else{
+          return fileName; // 순수 파일명만(확장자 제외)
+        }
+      } 
+      else{
+        alert("파일을 선택해주세요");
+        return false;
+      }
+    }
+    function getCmaFileView(obj,stype) {
+      var s = getCmaFileInfo(obj,stype);
+      alert(s+" 파일이 업로드 됩니다." );
+      $("#filename").text(s);
+    }
+  </script>
+</html>

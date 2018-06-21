@@ -1,0 +1,6 @@
+body,#test{
+	background-image: url("../assets/img/bg-pricing.jpg");
+	background-repeat: no-repeat;
+	background-position: center;
+	color: white;
+}
